@@ -1,0 +1,26 @@
+{
+  "name": "online-quiz-application",
+  "version": "2.0.0",
+  "description": "Full-stack quiz application with Flask backend and React frontend",
+  "scripts": {
+    "install:backend": "cd backend && pip install -r requirements.txt",
+    "install:frontend": "cd frontend && npm install",
+    "install:all": "npm run install:backend && npm run install:frontend",
+    "init:db": "cd backend && python init_db.py",
+    "test:backend": "cd backend && pytest test_scoring.py -v",
+    "dev:backend": "cd backend && python app.py",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build:frontend": "cd frontend && npm run build",
+    "preview:frontend": "cd frontend && npm run preview"
+  },
+  "keywords": [
+    "quiz",
+    "flask",
+    "react",
+    "vite",
+    "education",
+    "fullstack"
+  ],
+  "author": "",
+  "license": "MIT"
+}

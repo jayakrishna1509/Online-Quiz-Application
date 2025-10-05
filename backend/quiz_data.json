@@ -1,0 +1,127 @@
+{
+  "quizzes": [
+    {
+      "title": "Programming Fundamentals",
+      "questions": [
+        {
+          "text": "What does HTML stands for?",
+          "options": [
+            {"text": "Hyper Text Markup Language", "is_correct": true},
+            {"text": "High Tech Modern Language", "is_correct": false},
+            {"text": "Home Tool Markup Language", "is_correct": false},
+            {"text": "Hyperlinks and Text Markup Language", "is_correct": false}
+          ]
+        },
+        {
+          "text": "Which type of Programming does Python support?",
+          "options": [
+            {"text": "object-oriented programming", "is_correct": false},
+            {"text": "structured programming", "is_correct": false},
+            {"text": "functional programming", "is_correct": false},
+            {"text": "all of the above", "is_correct": true}
+          ]
+        },
+        {
+          "text": "What is the Purpose of CSS?",
+          "options": [
+            {"text": "To structure web pages", "is_correct": false},
+            {"text": "To style web pages", "is_correct": true},
+            {"text": "To add interactivity", "is_correct": false},
+            {"text": "To manage databases", "is_correct": false}
+          ]
+        },
+        {
+          "text": "Which feature of OOP reduces the use of nested classes?",
+          "options": [
+            {"text": "Inheritance", "is_correct": true},
+            {"text": "Binding", "is_correct": false},
+            {"text": "Abstraction", "is_correct": false},
+            {"text": "Encapsulation", "is_correct": false}
+          ]
+        },
+        {
+          "text": "What does API stand for?",
+          "options": [
+            {"text": "Application Programming Interface", "is_correct": true},
+            {"text": "Advanced Programming Integration", "is_correct": false},
+            {"text": "Automated Program Interaction", "is_correct": false},
+            {"text": "Application Process Integration", "is_correct": false}
+          ]
+        }
+      ]
+    },
+    {
+      "title": "JavaScript Basics",
+      "questions": [
+        {
+          "text": "What is JavaScript?",
+          "options": [
+            {"text": "JavaScript is a programming language", "is_correct": true},
+            {"text": "JavaScript is a markup language", "is_correct": false},
+            {"text": "JavaScript is a database language", "is_correct": false},
+            {"text": "JavaScript is a compiled language", "is_correct": false}
+          ]
+        },
+        {
+          "text": "Which of the following is not Javascript data types?",
+          "options": [
+            {"text": "Null type", "is_correct": false},
+            {"text": "Undefined type", "is_correct": false},
+            {"text": "Number type", "is_correct": false},
+            {"text": "All of the above", "is_correct": true}
+          ]
+        },
+        {
+          "text": "Which of the following scoping type does JavaScript use?",
+          "options": [
+            {"text": "Sequential", "is_correct": false},
+            {"text": "Segmental", "is_correct": false},
+            {"text": "Lexical", "is_correct": true},
+            {"text": "Literal", "is_correct": false}
+          ]
+        },
+        {
+          "text": "What does 'NaN' stands for?",
+          "options": [
+            {"text": "Not a Number", "is_correct": true},
+            {"text": "Null and None", "is_correct": false},
+            {"text": "New Array Node", "is_correct": false},
+            {"text": "Negative and Null", "is_correct": false}
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Database Concepts",
+      "questions": [
+        {
+          "text": "What does SQL stands for?",
+          "options": [
+            {"text": "Structured Query Language", "is_correct": true},
+            {"text": "Simple Question Language", "is_correct": false},
+            {"text": "Standard Query Logic", "is_correct": false},
+            {"text": "System Query Language", "is_correct": false}
+          ]
+        },
+        {
+          "text": "Which SQL command is used to retrieve data from a database?",
+          "options": [
+            {"text": "GET", "is_correct": false},
+            {"text": "FETCH", "is_correct": false},
+            {"text": "SELECT", "is_correct": true},
+            {"text": "RETRIEVE", "is_correct": false}
+          ]
+        },
+        {
+          "text": "Which of the following is a default join type?",
+          "options": [
+            {"text": "INNER JOIN", "is_correct": true},
+            {"text": "OUTER JOIN", "is_correct": false},
+            {"text": "LEFT JOIN", "is_correct": false},
+            {"text": "RIGHT JOIN", "is_correct": false}
+          ]
+        }
+      ]
+    }
+  ]
+}
