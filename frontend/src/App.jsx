@@ -1,98 +1,102 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
-import './App.css'
-import QuizSelection from './components/QuizSelection'
-import QuizView from './components/QuizView'
-import ResultsView from './components/ResultsView'
-import LoadingSpinner from './components/LoadingSpinner'
+import { useState, useEffect } from "react";
+import axios from "axios";
+import "./App.css";
+import QuizSelection from "./components/QuizSelection";
+import QuizView from "./components/QuizView";
+import ResultsView from "./components/ResultsView";
+import LoadingSpinner from "./components/LoadingSpinner";
 
-const API_BASE_URL = 'http://localhost:5000/api'
+const API_BASE_URL = "http://localhost:5000/api";
 
 function App() {
-  const [currentView, setCurrentView] = useState('selection') // selection, quiz, results
-  const [quizzes, setQuizzes] = useState([])
-  const [selectedQuiz, setSelectedQuiz] = useState(null)
-  const [questions, setQuestions] = useState([])
-  const [results, setResults] = useState(null)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const [currentView, setCurrentView] = useState("selection"); // selection, quiz, results
+  const [quizzes, setQuizzes] = useState([]);
+  const [selectedQuiz, setSelectedQuiz] = useState(null);
+  const [questions, setQuestions] = useState([]);
+  const [results, setResults] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   // Fetch all quizzes on mount
   useEffect(() => {
-    fetchQuizzes()
-  }, [])
+    fetchQuizzes();
+  }, []);
 
   const fetchQuizzes = async () => {
-    setLoading(true)
-    setError(null)
+    setLoading(true);
+    setError(null);
     try {
-      const response = await axios.get(`${API_BASE_URL}/quizzes`)
-      setQuizzes(response.data)
+      const response = await axios.get(`${API_BASE_URL}/quizzes`);
+      setQuizzes(response.data);
     } catch (err) {
-      setError('Failed to load quizzes. Please make sure the backend is running.')
-      console.error('Error fetching quizzes:', err)
+      setError(
+        "Failed to Load Quizzes. Please Make Sure the backend is Running."
+      );
+      console.error("Error fetching quizzes:", err);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const handleQuizSelect = async (quizId) => {
-    setLoading(true)
-    setError(null)
+    setLoading(true);
+    setError(null);
     try {
-      const quiz = quizzes.find(q => q.id === quizId)
-      setSelectedQuiz(quiz)
-      
-      const response = await axios.get(`${API_BASE_URL}/quizzes/${quizId}/questions`)
-      setQuestions(response.data)
-      setCurrentView('quiz')
+      const quiz = quizzes.find((q) => q.id === quizId);
+      setSelectedQuiz(quiz);
+
+      const response = await axios.get(
+        `${API_BASE_URL}/quizzes/${quizId}/questions`
+      );
+      setQuestions(response.data);
+      setCurrentView("quiz");
     } catch (err) {
-      setError('Failed to load quiz questions.')
-      console.error('Error fetching questions:', err)
+      setError("Failed to load quiz questions.");
+      console.error("Error fetching questions:", err);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const handleQuizSubmit = async (answers, timeTaken) => {
-    setLoading(true)
-    setError(null)
+    setLoading(true);
+    setError(null);
     try {
       const response = await axios.post(
         `${API_BASE_URL}/quizzes/${selectedQuiz.id}/submit`,
         { answers }
-      )
-      setResults({ ...response.data, timeTaken })
-      setCurrentView('results')
+      );
+      setResults({ ...response.data, timeTaken });
+      setCurrentView("results");
     } catch (err) {
-      setError('Failed to submit quiz. Please try again.')
-      console.error('Error submitting quiz:', err)
+      setError("Failed to submit quiz. Please try again.");
+      console.error("Error submitting quiz:", err);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const handleRetakeQuiz = () => {
-    setCurrentView('selection')
-    setSelectedQuiz(null)
-    setQuestions([])
-    setResults(null)
-    setError(null)
-  }
+    setCurrentView("selection");
+    setSelectedQuiz(null);
+    setQuestions([]);
+    setResults(null);
+    setError(null);
+  };
 
   const handleBackToSelection = () => {
-    setCurrentView('selection')
-    setSelectedQuiz(null)
-    setQuestions([])
-    setError(null)
-  }
+    setCurrentView("selection");
+    setSelectedQuiz(null);
+    setQuestions([]);
+    setError(null);
+  };
 
   return (
     <div className="app">
       <header className="app-header">
         <div className="container">
           <h1 className="app-title">
-          Online Quiz Application
+            Online Quiz Application
             <span className="title-icon">📋</span>
           </h1>
           <p className="app-subtitle">Write Quiz and Test Your Knowledge</p>
@@ -105,10 +109,7 @@ function App() {
             <div className="error-banner fade-in">
               <span className="error-icon">⚠️</span>
               {error}
-              <button 
-                className="error-close"
-                onClick={() => setError(null)}
-              >
+              <button className="error-close" onClick={() => setError(null)}>
                 ×
               </button>
             </div>
@@ -116,14 +117,11 @@ function App() {
 
           {loading && <LoadingSpinner />}
 
-          {!loading && currentView === 'selection' && (
-            <QuizSelection 
-              quizzes={quizzes}
-              onSelectQuiz={handleQuizSelect}
-            />
+          {!loading && currentView === "selection" && (
+            <QuizSelection quizzes={quizzes} onSelectQuiz={handleQuizSelect} />
           )}
 
-          {!loading && currentView === 'quiz' && (
+          {!loading && currentView === "quiz" && (
             <QuizView
               quiz={selectedQuiz}
               questions={questions}
@@ -132,7 +130,7 @@ function App() {
             />
           )}
 
-          {!loading && currentView === 'results' && (
+          {!loading && currentView === "results" && (
             <ResultsView
               results={results}
               quizTitle={selectedQuiz?.title}
@@ -144,11 +142,14 @@ function App() {
 
       <footer className="app-footer">
         <div className="container">
-          <p>&copy; 2025 Online Quiz Application. Built With Full Stack Application.</p>
+          <p>
+            &copy; 2025 Online Quiz Application. Built With Full Stack
+            Application.
+          </p>
         </div>
       </footer>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
