@@ -6,7 +6,16 @@ import QuizView from "./components/QuizView";
 import ResultsView from "./components/ResultsView";
 import LoadingSpinner from "./components/LoadingSpinner";
 
-const API_BASE_URL = "http://localhost:5000/api";
+// Prefer an explicit VITE_API_BASE_URL (useful for production builds).
+// For local dev and for the frontend acting as a single server, use a relative '/api' so the dev server or Vercel serverless proxy can forward requests.
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "/api";
+
+// Single deploy link to show on Results view:
+// Prefer VITE_DEPLOY_URL (frontend's Vercel URL). If not set, fall back to the backend health endpoint constructed from VITE_API_BASE_URL (or localhost fallback).
+const DEPLOY_LINK =
+  import.meta.env.VITE_DEPLOY_URL ||
+  (import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api") +
+    "/health";
 
 function App() {
   const [currentView, setCurrentView] = useState("selection"); // selection, quiz, results
@@ -135,6 +144,7 @@ function App() {
               results={results}
               quizTitle={selectedQuiz?.title}
               onRetake={handleRetakeQuiz}
+              deployLink={DEPLOY_LINK}
             />
           )}
         </div>

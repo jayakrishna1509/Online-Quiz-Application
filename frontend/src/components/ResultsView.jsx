@@ -1,24 +1,38 @@
-import { Trophy, CheckCircle, XCircle, Clock, RotateCcw, Home } from 'lucide-react'
-import './ResultsView.css'
+import {
+  Trophy,
+  CheckCircle,
+  XCircle,
+  Clock,
+  RotateCcw,
+  Home,
+} from "lucide-react";
+import "./ResultsView.css";
 
-function ResultsView({ results, quizTitle, onRetake }) {
-  const { score, total, percentage, results: detailedResults, timeTaken } = results
+function ResultsView({ results, quizTitle, onRetake, deployLink }) {
+  const {
+    score,
+    total,
+    percentage,
+    results: detailedResults,
+    timeTaken,
+  } = results;
 
   const formatTime = (seconds) => {
-    const mins = Math.floor(seconds / 60)
-    const secs = seconds % 60
-    return `${mins}m ${secs}s`
-  }
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}m ${secs}s`;
+  };
 
   const getPerformanceMessage = () => {
-    if (percentage >= 90) return { text: 'Outstanding! 🎉', color: 'excellent' }
-    if (percentage >= 75) return { text: 'Great Job! 👏', color: 'great' }
-    if (percentage >= 60) return { text: 'Good Effort! 👍', color: 'good' }
-    if (percentage >= 40) return { text: 'Keep Practicing! 💪', color: 'fair' }
-    return { text: 'Don\'t Give Up! 📚', color: 'needs-improvement' }
-  }
+    if (percentage >= 90)
+      return { text: "Outstanding! 🎉", color: "excellent" };
+    if (percentage >= 75) return { text: "Great Job! 👏", color: "great" };
+    if (percentage >= 60) return { text: "Good Effort! 👍", color: "good" };
+    if (percentage >= 40) return { text: "Keep Practicing! 💪", color: "fair" };
+    return { text: "Don't Give Up! 📚", color: "needs-improvement" };
+  };
 
-  const performance = getPerformanceMessage()
+  const performance = getPerformanceMessage();
 
   return (
     <div className="results-view fade-in">
@@ -58,7 +72,13 @@ function ResultsView({ results, quizTitle, onRetake }) {
                 transform="rotate(-90 60 60)"
               />
               <defs>
-                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <linearGradient
+                  id="gradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
                   <stop offset="0%" stopColor="var(--primary-color)" />
                   <stop offset="100%" stopColor="var(--secondary-color)" />
                 </linearGradient>
@@ -66,7 +86,9 @@ function ResultsView({ results, quizTitle, onRetake }) {
             </svg>
             <div className="score-text">
               <div className="score-percentage">{percentage}%</div>
-              <div className="score-fraction">{score}/{total}</div>
+              <div className="score-fraction">
+                {score}/{total}
+              </div>
             </div>
           </div>
           <div className={`performance-message ${performance.color}`}>
@@ -106,12 +128,18 @@ function ResultsView({ results, quizTitle, onRetake }) {
           {detailedResults.map((result, index) => (
             <div
               key={result.questionId}
-              className={`result-item ${result.isCorrect ? 'correct' : 'incorrect'} slide-in`}
+              className={`result-item ${
+                result.isCorrect ? "correct" : "incorrect"
+              } slide-in`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="result-header">
                 <span className="result-number">Question {index + 1}</span>
-                <span className={`result-badge ${result.isCorrect ? 'correct' : 'incorrect'}`}>
+                <span
+                  className={`result-badge ${
+                    result.isCorrect ? "correct" : "incorrect"
+                  }`}
+                >
                   {result.isCorrect ? (
                     <>
                       <CheckCircle size={16} />
@@ -129,7 +157,11 @@ function ResultsView({ results, quizTitle, onRetake }) {
               <div className="result-answers">
                 <div className="answer-row">
                   <span className="answer-label">Your Answer:</span>
-                  <span className={`answer-value ${result.isCorrect ? 'correct' : 'incorrect'}`}>
+                  <span
+                    className={`answer-value ${
+                      result.isCorrect ? "correct" : "incorrect"
+                    }`}
+                  >
                     {result.userAnswer}
                   </span>
                 </div>
@@ -157,9 +189,20 @@ function ResultsView({ results, quizTitle, onRetake }) {
           <RotateCcw size={20} />
           Try Another Quiz
         </button>
+        {deployLink && (
+          <a
+            className="deploy-link"
+            href={deployLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ marginLeft: "12px", alignSelf: "center" }}
+          >
+            View Live (Single Deploy)
+          </a>
+        )}
       </div>
     </div>
-  )
+  );
 }
 
-export default ResultsView
+export default ResultsView;
